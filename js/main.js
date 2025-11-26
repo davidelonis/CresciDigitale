@@ -265,29 +265,6 @@ window.addEventListener('scroll', function() {
     }
 });
 
-// ===========================
-// Service Cards Hover Effect Enhancement
-// ===========================
-const serviceCards = document.querySelectorAll('.service-card');
-serviceCards.forEach(card => {
-    card.addEventListener('mouseenter', function(e) {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-
-        const deltaX = (x - centerX) / centerX;
-        const deltaY = (y - centerY) / centerY;
-
-        card.style.transform = `translateY(-10px) rotateX(${deltaY * 5}deg) rotateY(${deltaX * 5}deg)`;
-    });
-
-    card.addEventListener('mouseleave', function() {
-        card.style.transform = 'translateY(0) rotateX(0) rotateY(0)';
-    });
-});
 
 // ===========================
 // Loading Animation
@@ -325,6 +302,120 @@ resizeStyle.textContent = `
     }
 `;
 document.head.appendChild(resizeStyle);
+
+// ===========================
+// 3D Interactive Nebula Mouse Tracking
+// ===========================
+let mouseX = 0;
+let mouseY = 0;
+let targetX = 0;
+let targetY = 0;
+
+// Smooth mouse tracking
+document.addEventListener('mousemove', function(e) {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+});
+
+// Animate nebulae with parallax effect
+function animateNebulae() {
+    // Smooth interpolation for fluid movement
+    targetX += (mouseX - targetX) * 0.05;
+    targetY += (mouseY - targetY) * 0.05;
+
+    const nebula1 = document.querySelector('.nebula-1');
+    const nebula2 = document.querySelector('.nebula-2');
+    const nebula3 = document.querySelector('.nebula-3');
+
+    if (nebula1 && window.innerWidth > 834) { // Only on desktop
+        const moveX1 = (targetX - window.innerWidth / 2) * 0.02;
+        const moveY1 = (targetY - window.innerHeight / 2) * 0.02;
+        nebula1.style.transform = `translate(${moveX1}px, ${moveY1}px)`;
+    }
+
+    if (nebula2 && window.innerWidth > 834) {
+        const moveX2 = (targetX - window.innerWidth / 2) * 0.015;
+        const moveY2 = (targetY - window.innerHeight / 2) * 0.015;
+        nebula2.style.transform = `translate(${moveX2}px, ${moveY2}px)`;
+    }
+
+    if (nebula3 && window.innerWidth > 834) {
+        const moveX3 = (targetX - window.innerWidth / 2) * 0.025;
+        const moveY3 = (targetY - window.innerHeight / 2) * 0.025;
+        nebula3.style.transform = `translate(${moveX3}px, ${moveY3}px)`;
+    }
+
+    requestAnimationFrame(animateNebulae);
+}
+
+// Start animation
+if (window.innerWidth > 834) {
+    animateNebulae();
+}
+
+// ===========================
+// Cursor Light Effect
+// ===========================
+const cursorLight = document.querySelector('.cursor-light');
+
+if (cursorLight && window.innerWidth > 834) {
+    document.addEventListener('mousemove', function(e) {
+        cursorLight.style.left = e.clientX - 200 + 'px';
+        cursorLight.style.top = e.clientY - 200 + 'px';
+        cursorLight.style.opacity = '1';
+    });
+
+    // Hide cursor light when leaving the page
+    document.addEventListener('mouseleave', function() {
+        cursorLight.style.opacity = '0';
+    });
+}
+
+// ===========================
+// 3D Card Hover with Mouse Tracking
+// ===========================
+const interactiveCards = document.querySelectorAll('.service-card, .training-card');
+
+interactiveCards.forEach(card => {
+    card.addEventListener('mousemove', function(e) {
+        if (window.innerWidth <= 834) return; // Skip on mobile
+
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // Calculate percentage position
+        const xPercent = (x / rect.width) * 100;
+        const yPercent = (y / rect.height) * 100;
+
+        // Set CSS custom properties for the gradient effect
+        card.style.setProperty('--mouse-x', `${xPercent}%`);
+        card.style.setProperty('--mouse-y', `${yPercent}%`);
+
+        // 3D tilt effect
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const deltaX = (x - centerX) / centerX;
+        const deltaY = (y - centerY) / centerY;
+
+        const rotateY = deltaX * 8; // Adjust intensity
+        const rotateX = -deltaY * 8;
+
+        card.style.transform = `
+            perspective(1000px)
+            rotateX(${rotateX}deg)
+            rotateY(${rotateY}deg)
+            translateY(-10px)
+            scale3d(1.02, 1.02, 1.02)
+        `;
+    });
+
+    card.addEventListener('mouseleave', function() {
+        card.style.transform = '';
+        card.style.setProperty('--mouse-x', '50%');
+        card.style.setProperty('--mouse-y', '50%');
+    });
+});
 
 // ===========================
 // Console Welcome Message
