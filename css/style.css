@@ -134,9 +134,16 @@ p {
    Container & Layout
    =========================== */
 .container {
-    max-width: 1200px;
+    max-width: 90%;
+    width: 100%;
     margin: 0 auto;
-    padding: 0 clamp(1.5rem, 5vw, 5rem);
+    padding: 0 clamp(1.5rem, 3vw, 3rem);
+}
+
+@media (min-width: 1800px) {
+    .container {
+        max-width: 1600px;
+    }
 }
 
 /* ===========================
@@ -1590,20 +1597,53 @@ a:focus-visible {
     will-change: transform;
 }
 
-/* Glossy Sphere 3D */
+/* Organic Blob 3D - Liquid Design */
 .sphere-3d {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%,
-        rgba(255, 107, 53, 0.9) 0%,
-        rgba(184, 69, 141, 0.7) 40%,
+    width: 220px;
+    height: 220px;
+    border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+    background: radial-gradient(ellipse at 25% 25%,
+        rgba(255, 107, 53, 0.95) 0%,
+        rgba(255, 140, 66, 0.85) 20%,
+        rgba(184, 69, 141, 0.75) 50%,
+        rgba(154, 54, 117, 0.5) 80%,
         rgba(10, 10, 10, 0.3) 100%);
     box-shadow:
-        inset -15px -15px 30px rgba(0, 0, 0, 0.5),
-        inset 15px 15px 30px rgba(255, 255, 255, 0.1),
-        0 20px 60px rgba(184, 69, 141, 0.4);
-    animation: floatRotate 20s infinite ease-in-out;
+        inset -20px -20px 40px rgba(0, 0, 0, 0.6),
+        inset 20px 20px 40px rgba(255, 107, 53, 0.2),
+        0 30px 80px rgba(184, 69, 141, 0.5),
+        0 10px 30px rgba(255, 107, 53, 0.3);
+    animation: blobMorph 25s infinite ease-in-out, blobFloat 20s infinite ease-in-out;
+    backdrop-filter: blur(2px);
+    position: relative;
+    overflow: hidden;
+}
+
+.sphere-3d::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 15%;
+    width: 40%;
+    height: 40%;
+    background: radial-gradient(circle,
+        rgba(255, 255, 255, 0.6) 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        transparent 100%);
+    border-radius: 50%;
+    filter: blur(8px);
+}
+
+.sphere-3d::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+        rgba(255, 107, 53, 0.3) 0%,
+        transparent 50%,
+        rgba(184, 69, 141, 0.3) 100%);
+    border-radius: inherit;
+    opacity: 0.7;
 }
 
 .sphere-3d-1 {
@@ -1620,26 +1660,51 @@ a:focus-visible {
     animation-delay: 5s;
 }
 
-/* Torus 3D - usando border e pseudo elementi */
+/* Organic Liquid Blob - Torus Transform */
 .torus-3d {
-    width: 200px;
-    height: 200px;
+    width: 240px;
+    height: 240px;
     position: relative;
-    animation: torusRotate 25s infinite linear;
+    animation: blobMorph2 28s infinite ease-in-out, blobFloat 22s infinite ease-in-out;
+    border-radius: 48% 52% 60% 40% / 43% 57% 43% 57%;
+    background: radial-gradient(ellipse at 35% 30%,
+        rgba(184, 69, 141, 0.9) 0%,
+        rgba(214, 87, 168, 0.8) 25%,
+        rgba(255, 107, 53, 0.7) 60%,
+        rgba(10, 10, 10, 0.4) 100%);
+    box-shadow:
+        inset -25px -25px 50px rgba(0, 0, 0, 0.7),
+        inset 25px 25px 50px rgba(184, 69, 141, 0.3),
+        0 35px 90px rgba(255, 107, 53, 0.4),
+        0 15px 40px rgba(184, 69, 141, 0.5);
+    backdrop-filter: blur(3px);
 }
 
 .torus-3d::before {
     content: '';
     position: absolute;
-    width: 100%;
-    height: 100%;
+    top: 15%;
+    right: 20%;
+    width: 35%;
+    height: 35%;
+    background: radial-gradient(circle,
+        rgba(255, 255, 255, 0.7) 0%,
+        rgba(255, 255, 255, 0.3) 40%,
+        transparent 80%);
     border-radius: 50%;
-    border: 30px solid;
-    border-color: rgba(255, 107, 53, 0.6) rgba(184, 69, 141, 0.4) rgba(255, 140, 66, 0.5) rgba(214, 87, 168, 0.3);
-    box-shadow:
-        inset 0 0 40px rgba(255, 107, 53, 0.3),
-        0 0 40px rgba(184, 69, 141, 0.4);
-    transform: rotateX(60deg) rotateY(30deg);
+    filter: blur(10px);
+}
+
+.torus-3d::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(225deg,
+        rgba(184, 69, 141, 0.4) 0%,
+        transparent 50%,
+        rgba(255, 107, 53, 0.4) 100%);
+    border-radius: inherit;
+    opacity: 0.8;
 }
 
 .torus-3d-1 {
@@ -1648,33 +1713,57 @@ a:focus-visible {
     animation-delay: 0s;
 }
 
-/* Cube 3D with smooth corners */
+/* Organic Blob 3D - Irregular Shape */
 .cube-3d {
-    width: 160px;
-    height: 160px;
+    width: 200px;
+    height: 200px;
     position: relative;
-    transform-style: preserve-3d;
-    animation: cubeRotate 30s infinite linear;
+    border-radius: 54% 46% 48% 52% / 60% 45% 55% 40%;
+    background: radial-gradient(ellipse at 30% 25%,
+        rgba(255, 140, 66, 0.92) 0%,
+        rgba(255, 107, 53, 0.85) 30%,
+        rgba(214, 87, 168, 0.7) 65%,
+        rgba(10, 10, 10, 0.35) 100%);
+    box-shadow:
+        inset -22px -22px 45px rgba(0, 0, 0, 0.65),
+        inset 22px 22px 45px rgba(255, 140, 66, 0.25),
+        0 32px 85px rgba(255, 107, 53, 0.45),
+        0 12px 35px rgba(214, 87, 168, 0.4);
+    animation: blobMorph3 30s infinite ease-in-out, blobFloat 24s infinite ease-in-out;
+    backdrop-filter: blur(2px);
 }
 
-.cube-3d .face {
+.cube-3d::before {
+    content: '';
     position: absolute;
-    width: 160px;
-    height: 160px;
-    background: linear-gradient(135deg,
-        rgba(255, 107, 53, 0.7) 0%,
-        rgba(184, 69, 141, 0.5) 100%);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 0 30px rgba(184, 69, 141, 0.3);
+    top: 12%;
+    left: 18%;
+    width: 38%;
+    height: 38%;
+    background: radial-gradient(circle,
+        rgba(255, 255, 255, 0.65) 0%,
+        rgba(255, 255, 255, 0.25) 45%,
+        transparent 85%);
+    border-radius: 50%;
+    filter: blur(9px);
 }
 
-.cube-3d .front  { transform: translateZ(80px); }
-.cube-3d .back   { transform: rotateY(180deg) translateZ(80px); }
-.cube-3d .right  { transform: rotateY(90deg) translateZ(80px); }
-.cube-3d .left   { transform: rotateY(-90deg) translateZ(80px); }
-.cube-3d .top    { transform: rotateX(90deg) translateZ(80px); }
-.cube-3d .bottom { transform: rotateX(-90deg) translateZ(80px); }
+.cube-3d::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(145deg,
+        rgba(255, 107, 53, 0.35) 0%,
+        transparent 50%,
+        rgba(214, 87, 168, 0.35) 100%);
+    border-radius: inherit;
+    opacity: 0.75;
+}
+
+/* Hide old cube faces */
+.cube-3d .face {
+    display: none;
+}
 
 .cube-3d-1 {
     top: 25%;
@@ -1702,43 +1791,114 @@ a:focus-visible {
 .cube-3d-2 .top    { transform: rotateX(90deg) translateZ(60px); }
 .cube-3d-2 .bottom { transform: rotateX(-90deg) translateZ(60px); }
 
-/* 3D Keyframe Animations */
-@keyframes floatRotate {
+/* Organic Blob Morphing Animations */
+@keyframes blobMorph {
     0%, 100% {
-        transform: translateY(0) rotateX(0deg) rotateY(0deg);
+        border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
     }
-    25% {
-        transform: translateY(-30px) rotateX(10deg) rotateY(90deg);
+    14% {
+        border-radius: 40% 60% 54% 46% / 49% 60% 40% 51%;
     }
-    50% {
-        transform: translateY(-15px) rotateX(-5deg) rotateY(180deg);
+    28% {
+        border-radius: 54% 46% 38% 62% / 49% 70% 30% 51%;
     }
-    75% {
-        transform: translateY(-25px) rotateX(8deg) rotateY(270deg);
+    42% {
+        border-radius: 61% 39% 55% 45% / 61% 38% 62% 39%;
+    }
+    56% {
+        border-radius: 61% 39% 67% 33% / 70% 50% 50% 30%;
+    }
+    70% {
+        border-radius: 50% 50% 34% 66% / 56% 68% 32% 44%;
+    }
+    84% {
+        border-radius: 46% 54% 50% 50% / 35% 61% 39% 65%;
     }
 }
 
-@keyframes torusRotate {
-    0% {
-        transform: rotateX(60deg) rotateY(0deg) rotateZ(0deg);
+@keyframes blobMorph2 {
+    0%, 100% {
+        border-radius: 48% 52% 60% 40% / 43% 57% 43% 57%;
     }
-    100% {
-        transform: rotateX(60deg) rotateY(360deg) rotateZ(15deg);
+    16% {
+        border-radius: 58% 42% 45% 55% / 52% 48% 52% 48%;
+    }
+    32% {
+        border-radius: 42% 58% 52% 48% / 60% 40% 60% 40%;
+    }
+    48% {
+        border-radius: 55% 45% 41% 59% / 48% 62% 38% 52%;
+    }
+    64% {
+        border-radius: 38% 62% 68% 32% / 55% 45% 55% 45%;
+    }
+    80% {
+        border-radius: 62% 38% 47% 53% / 39% 58% 42% 61%;
     }
 }
 
-@keyframes cubeRotate {
-    0% {
-        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+@keyframes blobMorph3 {
+    0%, 100% {
+        border-radius: 54% 46% 48% 52% / 60% 45% 55% 40%;
     }
-    100% {
-        transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+    18% {
+        border-radius: 44% 56% 61% 39% / 48% 58% 42% 52%;
+    }
+    36% {
+        border-radius: 67% 33% 44% 56% / 56% 40% 60% 44%;
+    }
+    54% {
+        border-radius: 38% 62% 58% 42% / 65% 52% 48% 35%;
+    }
+    72% {
+        border-radius: 59% 41% 35% 65% / 42% 68% 32% 58%;
+    }
+    90% {
+        border-radius: 49% 51% 62% 38% / 51% 44% 56% 49%;
+    }
+}
+
+@keyframes blobFloat {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+    }
+    20% {
+        transform: translate(-15px, -25px) rotate(5deg) scale(1.03);
+    }
+    40% {
+        transform: translate(10px, -35px) rotate(-8deg) scale(0.98);
+    }
+    60% {
+        transform: translate(20px, -20px) rotate(6deg) scale(1.05);
+    }
+    80% {
+        transform: translate(-8px, -30px) rotate(-4deg) scale(1.01);
     }
 }
 
 /* Parallax Scroll Effect for 3D Elements */
 .parallax-3d {
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Motion Trail/Blur Effect on Hover */
+.geometric-3d {
+    transition: filter 0.4s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.geometric-3d:hover {
+    filter: blur(2px) brightness(1.2);
+    transform: scale(1.08) rotate(5deg);
+    animation-play-state: paused;
+}
+
+.geometric-3d::after {
+    transition: opacity 0.4s ease, transform 0.6s ease;
+}
+
+.geometric-3d:hover::after {
+    opacity: 1;
+    transform: scale(1.1);
 }
 
 /* ===========================

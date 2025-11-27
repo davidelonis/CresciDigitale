@@ -472,6 +472,88 @@ document.querySelectorAll('.geometric-3d').forEach(element => {
 });
 
 // ===========================
+// Motion Trail Effect for Organic Blob Shapes
+// ===========================
+const blobShapes = document.querySelectorAll('.geometric-3d');
+
+blobShapes.forEach(blob => {
+    let isHovering = false;
+    let trail = null;
+
+    blob.addEventListener('mouseenter', function(e) {
+        if (window.innerWidth <= 834) return; // Skip on mobile
+        isHovering = true;
+
+        // Create trail element
+        if (!trail) {
+            trail = document.createElement('div');
+            trail.className = 'blob-trail';
+            Object.assign(trail.style, {
+                position: 'absolute',
+                width: this.offsetWidth + 'px',
+                height: this.offsetHeight + 'px',
+                borderRadius: this.style.borderRadius || '63% 37% 54% 46% / 55% 48% 52% 45%',
+                background: window.getComputedStyle(this).background,
+                opacity: '0.3',
+                pointerEvents: 'none',
+                zIndex: '-1',
+                filter: 'blur(20px)',
+                transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)'
+            });
+            this.parentElement.appendChild(trail);
+        }
+
+        // Position trail behind the blob
+        const rect = this.getBoundingClientRect();
+        const parentRect = this.parentElement.getBoundingClientRect();
+        trail.style.left = (rect.left - parentRect.left) + 'px';
+        trail.style.top = (rect.top - parentRect.top) + 'px';
+    });
+
+    blob.addEventListener('mousemove', function(e) {
+        if (window.innerWidth <= 834 || !isHovering) return;
+
+        // Get mouse position relative to blob
+        const rect = this.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+
+        // Apply subtle movement based on mouse position
+        const moveX = x * 0.15;
+        const moveY = y * 0.15;
+
+        // Update blob position
+        this.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.08) rotate(5deg)`;
+
+        // Update trail with delay
+        if (trail) {
+            setTimeout(() => {
+                trail.style.transform = `translate(${moveX * 0.5}px, ${moveY * 0.5}px) scale(1.05)`;
+            }, 100);
+        }
+    });
+
+    blob.addEventListener('mouseleave', function() {
+        isHovering = false;
+
+        // Reset blob transform
+        this.style.transform = '';
+
+        // Fade out and remove trail
+        if (trail) {
+            trail.style.opacity = '0';
+            trail.style.transform = '';
+            setTimeout(() => {
+                if (trail && trail.parentElement) {
+                    trail.remove();
+                    trail = null;
+                }
+            }, 500);
+        }
+    });
+});
+
+// ===========================
 // Micro-Animations on Hover
 // ===========================
 const hoverElements = document.querySelectorAll('.btn, .service-card, .training-card, .nav-link');
