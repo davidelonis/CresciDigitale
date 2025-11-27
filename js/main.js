@@ -131,24 +131,73 @@ revealElements.forEach(el => {
 });
 
 // ===========================
-// Form Handling
+// Form Handling with Validation
 // ===========================
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
+    // Email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Add honeypot field dynamically (anti-spam)
+    const honeypot = document.createElement('input');
+    honeypot.type = 'text';
+    honeypot.name = 'website';
+    honeypot.style.cssText = 'position:absolute;left:-9999px;';
+    honeypot.tabIndex = -1;
+    honeypot.autocomplete = 'off';
+    contactForm.appendChild(honeypot);
+
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
+
+        // Check honeypot (bot detection)
+        if (honeypot.value) {
+            console.warn('Bot detected');
+            return;
+        }
 
         // Get form data
         const formData = new FormData(contactForm);
         const data = Object.fromEntries(formData);
 
-        // Here you would typically send the data to your backend
+        // Validate email
+        if (!emailRegex.test(data.email)) {
+            showNotification('Inserisci un indirizzo email valido.', 'error');
+            return;
+        }
+
+        // Validate name (min 2 chars)
+        if (data.name && data.name.trim().length < 2) {
+            showNotification('Inserisci il tuo nome completo.', 'error');
+            return;
+        }
+
+        // Validate message (min 10 chars)
+        if (data.message && data.message.trim().length < 10) {
+            showNotification('Il messaggio deve contenere almeno 10 caratteri.', 'error');
+            return;
+        }
+
+        // Rate limiting (1 submit per 30 seconds)
+        const lastSubmit = localStorage.getItem('lastFormSubmit');
+        const now = Date.now();
+        if (lastSubmit && (now - parseInt(lastSubmit)) < 30000) {
+            showNotification('Attendi qualche secondo prima di inviare un altro messaggio.', 'error');
+            return;
+        }
+
+        // TODO: Replace with actual form submission endpoint
+        // Example with Formspree:
+        // fetch('https://formspree.io/f/YOUR_FORM_ID', {
+        //     method: 'POST',
+        //     body: formData,
+        //     headers: { 'Accept': 'application/json' }
+        // }).then(response => { ... });
+
         console.log('Form submitted:', data);
+        localStorage.setItem('lastFormSubmit', now.toString());
 
-        // Show success message
         showNotification('Grazie per averci contattato! Ti risponderemo al più presto.', 'success');
-
-        // Reset form
         contactForm.reset();
     });
 }
@@ -449,26 +498,26 @@ window.addEventListener('scroll', function() {
 // ===========================
 // Scroll-Triggered Animations for 3D Elements
 // ===========================
-const observerOptions = {
+const geometricObserverOptions = {
     threshold: 0.2,
     rootMargin: '0px 0px -100px 0px'
 };
 
-const observer = new IntersectionObserver((entries) => {
+const geometricObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.style.opacity = '1';
             entry.target.style.transform = 'translateY(0) scale(1)';
         }
     });
-}, observerOptions);
+}, geometricObserverOptions);
 
 // Observe all 3D geometric elements
 document.querySelectorAll('.geometric-3d').forEach(element => {
     element.style.opacity = '0';
     element.style.transform = 'translateY(50px) scale(0.9)';
     element.style.transition = 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
-    observer.observe(element);
+    geometricObserver.observe(element);
 });
 
 // ===========================
@@ -563,6 +612,14 @@ hoverElements.forEach(element => {
         this.style.transition = 'transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
     });
 });
+
+// ===========================
+// Dynamic Copyright Year
+// ===========================
+const yearSpan = document.getElementById('currentYear');
+if (yearSpan) {
+    yearSpan.textContent = new Date().getFullYear();
+}
 
 // ===========================
 // Console Welcome Message

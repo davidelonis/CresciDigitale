@@ -5,12 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="CresciDigitale - Formazione certificata su AI, GDPR e ottimizzazione dei processi con oltre 250 formatori esperti per aziende, PA e scuole">
     <title>CresciDigitale | Formazione Professionale AI, GDPR e Business Process Optimization</title>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://crescidigitale.it/">
+    <meta property="og:title" content="CresciDigitale | Formazione Professionale AI, GDPR e Business">
+    <meta property="og:description" content="Oltre 250 formatori certificati per portare competenze di valore su AI, GDPR e ottimizzazione processi nella tua organizzazione.">
+    <meta property="og:image" content="https://crescidigitale.it/assets/og-image.jpg">
+    <meta property="og:locale" content="it_IT">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://crescidigitale.it/">
+    <meta name="twitter:title" content="CresciDigitale | Formazione Professionale AI, GDPR e Business">
+    <meta name="twitter:description" content="Oltre 250 formatori certificati per portare competenze di valore nella tua organizzazione.">
+    <meta name="twitter:image" content="https://crescidigitale.it/assets/og-image.jpg">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://crescidigitale.it/">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "CresciDigitale",
+        "description": "La più grande community italiana di formatori certificati specializzati in AI, GDPR e Business Process Optimization",
+        "url": "https://crescidigitale.it",
+        "logo": "https://crescidigitale.it/assets/logo.png",
+        "email": "info@crescidigitale.it",
+        "telephone": "+39 02 1234 5678",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Via dell'Innovazione 123",
+            "addressLocality": "Milano",
+            "postalCode": "20100",
+            "addressCountry": "IT"
+        },
+        "sameAs": [
+            "https://www.linkedin.com/company/crescidigitale",
+            "https://twitter.com/crescidigitale",
+            "https://www.instagram.com/crescidigitale"
+        ],
+        "areaServed": "IT",
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Corsi di Formazione",
+            "itemListElement": [
+                {
+                    "@type": "Course",
+                    "name": "Formazione Intelligenza Artificiale",
+                    "description": "Corsi su AI generativa, prompt engineering e strategie di implementazione"
+                },
+                {
+                    "@type": "Course",
+                    "name": "Formazione GDPR e Privacy",
+                    "description": "Corsi sulla normativa privacy e protezione dati"
+                },
+                {
+                    "@type": "Course",
+                    "name": "Business Process Optimization",
+                    "description": "Corsi su ottimizzazione processi e metodologie lean"
+                }
+            ]
+        }
+    }
+    </script>
 </head>
 <body>
+    <noscript>
+        <style>
+            .hero-3d-container canvas { display: none; }
+            .hero-3d-fallback { display: block !important; }
+            .interactive-nebula, .mesh-gradient-bg, .cursor-light { display: none; }
+        </style>
+        <div style="background:#ff6b35;color:white;padding:1rem;text-align:center;position:fixed;top:0;left:0;right:0;z-index:10000;">
+            Per una migliore esperienza, abilita JavaScript nel tuo browser.
+        </div>
+    </noscript>
+
     <!-- Interactive 3D Nebula Shapes -->
     <div class="interactive-nebula nebula-1"></div>
     <div class="interactive-nebula nebula-2"></div>
@@ -87,6 +170,11 @@
             <!-- 3D Canvas Container -->
             <div class="hero-3d-container">
                 <canvas id="hero3d"></canvas>
+                <div class="hero-3d-fallback" aria-hidden="true">
+                    <div class="fallback-blob fallback-blob-1"></div>
+                    <div class="fallback-blob fallback-blob-2"></div>
+                    <div class="fallback-blob fallback-blob-3"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -110,7 +198,7 @@
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <svg aria-hidden="true" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
@@ -130,7 +218,7 @@
 
                 <div class="service-card">
                     <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <svg aria-hidden="true" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                             <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke-width="2"/>
                             <polyline points="7.5 4.21 12 6.81 16.5 4.21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             <polyline points="7.5 19.79 7.5 14.6 3 12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -155,7 +243,7 @@
 
                 <div class="service-card">
                     <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <svg aria-hidden="true" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                             <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             <circle cx="9" cy="7" r="4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M23 21v-2a4 4 0 0 0-3-3.87" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -178,7 +266,7 @@
 
                 <div class="service-card">
                     <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <svg aria-hidden="true" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                             <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
@@ -199,7 +287,7 @@
 
                 <div class="service-card">
                     <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <svg aria-hidden="true" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                             <rect x="2" y="7" width="20" height="14" rx="2" ry="2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
@@ -220,7 +308,7 @@
 
                 <div class="service-card">
                     <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <svg aria-hidden="true" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                             <circle cx="12" cy="12" r="10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M12 16v-4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M12 8h.01" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -287,7 +375,7 @@
                 </div>
                 <div class="about-image">
                     <div class="image-placeholder">
-                        <svg viewBox="0 0 400 400" fill="none">
+                        <svg aria-hidden="true" role="img" viewBox="0 0 400 400" fill="none">
                             <rect width="400" height="400" fill="url(#gradient)"/>
                             <defs>
                                 <linearGradient id="gradient" x1="0" y1="0" x2="400" y2="400">
@@ -415,7 +503,7 @@
                     <div class="contact-details">
                         <div class="contact-item">
                             <div class="contact-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <svg aria-hidden="true" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke-width="2"/>
                                     <circle cx="12" cy="10" r="3" stroke-width="2"/>
                                 </svg>
@@ -427,7 +515,7 @@
                         </div>
                         <div class="contact-item">
                             <div class="contact-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <svg aria-hidden="true" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke-width="2"/>
                                     <polyline points="22,6 12,13 2,6" stroke-width="2"/>
                                 </svg>
@@ -439,7 +527,7 @@
                         </div>
                         <div class="contact-item">
                             <div class="contact-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <svg aria-hidden="true" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke-width="2"/>
                                 </svg>
                             </div>
@@ -516,20 +604,20 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 CresciDigitale. Tutti i diritti riservati.</p>
+                <p>&copy; <span id="currentYear">2024</span> CresciDigitale. Tutti i diritti riservati.</p>
                 <div class="social-links">
                     <a href="#" aria-label="LinkedIn">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
+                        <svg aria-hidden="true" role="img" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                         </svg>
                     </a>
                     <a href="#" aria-label="Twitter">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
+                        <svg aria-hidden="true" role="img" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
                         </svg>
                     </a>
                     <a href="#" aria-label="Instagram">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
+                        <svg aria-hidden="true" role="img" viewBox="0 0 24 24" fill="currentColor">
                             <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
                             <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="white" stroke-width="1.5"/>
                             <circle cx="17.5" cy="6.5" r="1.5" fill="white"/>

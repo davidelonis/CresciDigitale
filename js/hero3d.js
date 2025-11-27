@@ -16,6 +16,15 @@ class Hero3DScene {
         this.canvas = document.getElementById('hero3d');
         if (!this.canvas) return;
 
+        // Check WebGL support
+        const testCanvas = document.createElement('canvas');
+        const gl = testCanvas.getContext('webgl') || testCanvas.getContext('experimental-webgl');
+        if (!gl) {
+            document.body.classList.add('no-webgl');
+            console.warn('WebGL not supported, using fallback');
+            return;
+        }
+
         // Scene properties
         this.scene = null;
         this.camera = null;
@@ -52,6 +61,9 @@ class Hero3DScene {
         this.setupPostProcessing();
         this.setupEventListeners();
         this.animate();
+
+        // Mark canvas as active for CSS selectors
+        this.canvas.classList.add('webgl-active');
     }
 
     setupScene() {
