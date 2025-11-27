@@ -3,12 +3,13 @@
    Apple-Inspired Premium Design
    =========================== */
 :root {
-    /* Premium Color Palette - Purple & Magenta (80s Synth Aesthetic) */
-    --primary-color: #B8458D;
-    --primary-hover: #D657A8;
-    --primary-dark: #9A3675;
-    --secondary-color: #2D1B4E;
-    --accent-color: #E86BBF;
+    /* Premium Color Palette - Retro-Futuristic (Black to Magenta + Orange) */
+    --primary-color: #FF6B35;
+    --primary-hover: #FF8C42;
+    --primary-dark: #E85A28;
+    --secondary-color: #0A0A0A;
+    --accent-color: #B8458D;
+    --accent-magenta: #D657A8;
 
     /* Text Colors */
     --text-dark: #1D1D1F;
@@ -263,7 +264,18 @@ p {
     justify-content: center;
     padding-top: 80px;
     overflow: hidden;
-    background: #2D1B4E;
+    background: #0A0A0A;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
+    opacity: 0.3;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    z-index: 2;
 }
 
 .hero-background {
@@ -272,17 +284,18 @@ p {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(90deg, #2D1B4E 0%, #B8458D 100%);
-    z-index: -1;
+    background: linear-gradient(90deg, #0A0A0A 0%, #B8458D 100%);
+    z-index: 0;
 }
 
 .gradient-overlay {
     position: absolute;
     inset: 0;
     background:
-        radial-gradient(circle at 20% 50%, rgba(184, 69, 141, 0.2) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(232, 107, 191, 0.15) 0%, transparent 50%);
-    opacity: 0.6;
+        radial-gradient(circle at 20% 50%, rgba(184, 69, 141, 0.25) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 107, 53, 0.15) 0%, transparent 50%);
+    opacity: 0.7;
+    z-index: 1;
 }
 
 .animated-shapes {
@@ -304,7 +317,7 @@ p {
     height: 500px;
     top: -10%;
     left: -10%;
-    background: radial-gradient(circle, rgba(184, 69, 141, 0.35) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255, 107, 53, 0.4) 0%, rgba(184, 69, 141, 0.2) 50%, transparent 70%);
     animation-delay: 0s;
 }
 
@@ -313,7 +326,7 @@ p {
     height: 400px;
     top: 50%;
     right: -10%;
-    background: radial-gradient(circle, rgba(232, 107, 191, 0.3) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(184, 69, 141, 0.35) 0%, rgba(255, 140, 66, 0.15) 50%, transparent 70%);
     animation-delay: 10s;
 }
 
@@ -322,7 +335,7 @@ p {
     height: 350px;
     bottom: -10%;
     left: 50%;
-    background: radial-gradient(circle, rgba(154, 54, 117, 0.25) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(214, 87, 168, 0.3) 0%, rgba(255, 107, 53, 0.15) 50%, transparent 70%);
     animation-delay: 20s;
 }
 
@@ -689,10 +702,10 @@ section {
 }
 
 .training-card.featured {
-    background: linear-gradient(135deg, #2D1B4E 0%, #4A2E6C 100%);
+    background: linear-gradient(135deg, #0A0A0A 0%, #1A0F1F 50%, #B8458D 100%);
     color: white;
     border: none;
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-xl);
 }
 
 .training-card.featured:hover {
@@ -720,8 +733,8 @@ section {
 }
 
 .training-card.featured .training-badge {
-    background: rgba(184, 69, 141, 0.2);
-    color: var(--primary-color);
+    background: rgba(255, 107, 53, 0.25);
+    color: #FF6B35;
 }
 
 .training-card h3 {
@@ -779,7 +792,7 @@ section {
    CTA Section - Apple Premium
    =========================== */
 .cta-section {
-    background: linear-gradient(135deg, #2D1B4E 0%, #4A2E6C 100%);
+    background: linear-gradient(135deg, #0A0A0A 0%, #1A0F1F 50%, #B8458D 100%);
     color: white;
     text-align: center;
     padding: var(--spacing-2xl) 0;
@@ -1341,9 +1354,9 @@ a:focus-visible {
     top: -300px;
     left: -300px;
     background: radial-gradient(circle at 50% 50%,
-        rgba(184, 69, 141, 0.18) 0%,
-        rgba(232, 107, 191, 0.12) 30%,
-        rgba(154, 54, 117, 0.06) 60%,
+        rgba(255, 107, 53, 0.22) 0%,
+        rgba(184, 69, 141, 0.15) 30%,
+        rgba(255, 140, 66, 0.08) 60%,
         transparent 100%);
     filter: blur(80px);
     opacity: 0.7;
@@ -1356,9 +1369,9 @@ a:focus-visible {
     bottom: -250px;
     right: -250px;
     background: radial-gradient(circle at 50% 50%,
-        rgba(232, 107, 191, 0.15) 0%,
-        rgba(184, 69, 141, 0.1) 35%,
-        rgba(214, 87, 168, 0.05) 65%,
+        rgba(184, 69, 141, 0.18) 0%,
+        rgba(255, 107, 53, 0.12) 35%,
+        rgba(214, 87, 168, 0.06) 65%,
         transparent 100%);
     filter: blur(70px);
     opacity: 0.6;
@@ -1371,8 +1384,8 @@ a:focus-visible {
     top: 40%;
     right: 10%;
     background: radial-gradient(circle at 50% 50%,
-        rgba(184, 69, 141, 0.12) 0%,
-        rgba(232, 107, 191, 0.08) 40%,
+        rgba(255, 140, 66, 0.15) 0%,
+        rgba(184, 69, 141, 0.1) 40%,
         transparent 100%);
     filter: blur(90px);
     opacity: 0.5;
@@ -1567,13 +1580,235 @@ a:focus-visible {
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* ===========================
+   3D Geometric Elements - Retro-Futuristic
+   =========================== */
+.geometric-3d {
+    position: absolute;
+    pointer-events: none;
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+/* Glossy Sphere 3D */
+.sphere-3d {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%,
+        rgba(255, 107, 53, 0.9) 0%,
+        rgba(184, 69, 141, 0.7) 40%,
+        rgba(10, 10, 10, 0.3) 100%);
+    box-shadow:
+        inset -15px -15px 30px rgba(0, 0, 0, 0.5),
+        inset 15px 15px 30px rgba(255, 255, 255, 0.1),
+        0 20px 60px rgba(184, 69, 141, 0.4);
+    animation: floatRotate 20s infinite ease-in-out;
+}
+
+.sphere-3d-1 {
+    top: 15%;
+    right: 8%;
+    animation-delay: 0s;
+}
+
+.sphere-3d-2 {
+    bottom: 20%;
+    left: 5%;
+    width: 140px;
+    height: 140px;
+    animation-delay: 5s;
+}
+
+/* Torus 3D - usando border e pseudo elementi */
+.torus-3d {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    animation: torusRotate 25s infinite linear;
+}
+
+.torus-3d::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 30px solid;
+    border-color: rgba(255, 107, 53, 0.6) rgba(184, 69, 141, 0.4) rgba(255, 140, 66, 0.5) rgba(214, 87, 168, 0.3);
+    box-shadow:
+        inset 0 0 40px rgba(255, 107, 53, 0.3),
+        0 0 40px rgba(184, 69, 141, 0.4);
+    transform: rotateX(60deg) rotateY(30deg);
+}
+
+.torus-3d-1 {
+    top: 40%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+/* Cube 3D with smooth corners */
+.cube-3d {
+    width: 160px;
+    height: 160px;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: cubeRotate 30s infinite linear;
+}
+
+.cube-3d .face {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    background: linear-gradient(135deg,
+        rgba(255, 107, 53, 0.7) 0%,
+        rgba(184, 69, 141, 0.5) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px rgba(184, 69, 141, 0.3);
+}
+
+.cube-3d .front  { transform: translateZ(80px); }
+.cube-3d .back   { transform: rotateY(180deg) translateZ(80px); }
+.cube-3d .right  { transform: rotateY(90deg) translateZ(80px); }
+.cube-3d .left   { transform: rotateY(-90deg) translateZ(80px); }
+.cube-3d .top    { transform: rotateX(90deg) translateZ(80px); }
+.cube-3d .bottom { transform: rotateX(-90deg) translateZ(80px); }
+
+.cube-3d-1 {
+    top: 25%;
+    right: 15%;
+    animation-delay: 0s;
+}
+
+.cube-3d-2 {
+    bottom: 30%;
+    right: 12%;
+    width: 120px;
+    height: 120px;
+    animation-delay: 10s;
+}
+
+.cube-3d-2 .face {
+    width: 120px;
+    height: 120px;
+}
+
+.cube-3d-2 .front, .cube-3d-2 .back  { transform: rotateY(0deg) translateZ(60px); }
+.cube-3d-2 .back   { transform: rotateY(180deg) translateZ(60px); }
+.cube-3d-2 .right  { transform: rotateY(90deg) translateZ(60px); }
+.cube-3d-2 .left   { transform: rotateY(-90deg) translateZ(60px); }
+.cube-3d-2 .top    { transform: rotateX(90deg) translateZ(60px); }
+.cube-3d-2 .bottom { transform: rotateX(-90deg) translateZ(60px); }
+
+/* 3D Keyframe Animations */
+@keyframes floatRotate {
+    0%, 100% {
+        transform: translateY(0) rotateX(0deg) rotateY(0deg);
+    }
+    25% {
+        transform: translateY(-30px) rotateX(10deg) rotateY(90deg);
+    }
+    50% {
+        transform: translateY(-15px) rotateX(-5deg) rotateY(180deg);
+    }
+    75% {
+        transform: translateY(-25px) rotateX(8deg) rotateY(270deg);
+    }
+}
+
+@keyframes torusRotate {
+    0% {
+        transform: rotateX(60deg) rotateY(0deg) rotateZ(0deg);
+    }
+    100% {
+        transform: rotateX(60deg) rotateY(360deg) rotateZ(15deg);
+    }
+}
+
+@keyframes cubeRotate {
+    0% {
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    }
+    100% {
+        transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+    }
+}
+
+/* Parallax Scroll Effect for 3D Elements */
+.parallax-3d {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ===========================
+   Micro-Animations & Hover Effects
+   =========================== */
+.btn:hover {
+    transform: translateY(-2px) scale(1.02);
+}
+
+.btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.service-card, .training-card {
+    transition: all var(--transition-normal);
+}
+
+.service-card:hover, .training-card:hover {
+    transform: translateY(-8px);
+}
+
+.nav-link {
+    position: relative;
+    transition: color var(--transition-fast);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: width var(--transition-normal);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Smooth Section Transitions */
+section {
+    opacity: 1;
+    transition: opacity 0.6s ease-in-out;
+}
+
+/* Grain Texture for entire page */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+    opacity: 0.5;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    z-index: 9999;
+}
+
 /* Disable 3D effects on mobile for performance */
 @media (max-width: 834px) {
     .interactive-nebula,
     .mesh-gradient-bg,
     .cursor-light,
-    .glow-orb {
-        display: none;
+    .glow-orb,
+    .geometric-3d,
+    .sphere-3d,
+    .torus-3d,
+    .cube-3d {
+        display: none !important;
     }
 
     .service-card::before,

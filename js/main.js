@@ -418,8 +418,73 @@ interactiveCards.forEach(card => {
 });
 
 // ===========================
+// 3D Elements Parallax Scroll
+// ===========================
+function handleParallax3D() {
+    if (window.innerWidth <= 834) return; // Skip on mobile
+
+    const parallaxElements = document.querySelectorAll('.parallax-3d');
+    const scrolled = window.pageYOffset;
+
+    parallaxElements.forEach(element => {
+        const speed = parseFloat(element.getAttribute('data-speed')) || 0.3;
+        const yPos = -(scrolled * speed);
+
+        element.style.transform = `translateY(${yPos}px)`;
+    });
+}
+
+// Throttle scroll event for performance
+let ticking = false;
+window.addEventListener('scroll', function() {
+    if (!ticking) {
+        window.requestAnimationFrame(function() {
+            handleParallax3D();
+            ticking = false;
+        });
+        ticking = true;
+    }
+});
+
+// ===========================
+// Scroll-Triggered Animations for 3D Elements
+// ===========================
+const observerOptions = {
+    threshold: 0.2,
+    rootMargin: '0px 0px -100px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0) scale(1)';
+        }
+    });
+}, observerOptions);
+
+// Observe all 3D geometric elements
+document.querySelectorAll('.geometric-3d').forEach(element => {
+    element.style.opacity = '0';
+    element.style.transform = 'translateY(50px) scale(0.9)';
+    element.style.transition = 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+    observer.observe(element);
+});
+
+// ===========================
+// Micro-Animations on Hover
+// ===========================
+const hoverElements = document.querySelectorAll('.btn, .service-card, .training-card, .nav-link');
+
+hoverElements.forEach(element => {
+    element.addEventListener('mouseenter', function() {
+        this.style.transition = 'transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+    });
+});
+
+// ===========================
 // Console Welcome Message
 // ===========================
-console.log('%cCresciDigitale', 'font-size: 3em; font-weight: bold; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;');
-console.log('%cTrasformazione Digitale e AI per il Futuro', 'font-size: 1.2em; color: #667eea;');
-console.log('%cInteressato a lavorare con noi? Contattaci a info@crescidigitale.it', 'color: #4a5568;');
+console.log('%cCresciDigitale', 'font-size: 3em; font-weight: bold; background: linear-gradient(90deg, #FF6B35 0%, #B8458D 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;');
+console.log('%cFormazione che Trasforma', 'font-size: 1.2em; color: #FF6B35;');
+console.log('%cInteressato a lavorare con noi? Contattaci a info@crescidigitale.it', 'color: #B8458D;');
