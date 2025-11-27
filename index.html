@@ -55,7 +55,7 @@
                 <div class="shape shape-3"></div>
             </div>
         </div>
-        <div class="container">
+        <div class="container hero-container">
             <div class="hero-content">
                 <h1 class="hero-title">
                     Formazione che trasforma <span class="highlight">persone e organizzazioni</span>
@@ -83,6 +83,10 @@
                         <span class="stat-label">Organizzazioni Partner</span>
                     </div>
                 </div>
+            </div>
+            <!-- 3D Canvas Container -->
+            <div class="hero-3d-container">
+                <canvas id="hero3d"></canvas>
             </div>
         </div>
     </section>
@@ -536,6 +540,17 @@
         </div>
     </footer>
 
+    <!-- Three.js Library -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/"
+        }
+    }
+    </script>
+
     <script src="js/main.js"></script>
+    <script type="module" src="js/hero3d.js"></script>
 </body>
 </html>
